@@ -7,12 +7,15 @@ Date: 10/05/2020
 # Importing Modules
 from bs4 import BeautifulSoup
 import urllib
-
+from urllib.request import Request 
 # Giving url
 url = "https://www.snapdeal.com/products/mobiles-mobile-phones?sort=plrty&q=Price%3A10000%2C15000%7C"
 
+# Preventing the 403 error
+req = Request(url, headers = {'User-Agent': 'Mozilla/5.0'})
+
 # Reading all content
-content = urllib.request.urlopen(url).read()
+content = urllib.request.urlopen(req).read()
 
 # Passing the content to function
 soup = BeautifulSoup(content, features="lxml")
